@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from "react";
+import AppNavBar from "./Components/AppNavBar";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Home from "./Pages/Home";
+import Logout from "./Pages/Logout";
+import PageNotFound from "./Pages/PageError";
+import Product from "./Pages/Product";
+
+
+
+import { UserProvider } from "./UserContext";
+
+// routes
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+
+
+
 
 function App() {
+  
+const [user, setUser] = useState({
+  accessToken : localStorage.getItem('accessToken'),
+  email : localStorage.getItem("email"),
+  isCartEmpty : localStorage.getItem("isCartEmpty") === 'true',
+  isAdmin: localStorage.getItem("isAdmin")=== 'true'
+});
+
+const unsetUser = () =>{
+  localStorage.clear()
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider value={{user,setUser,unsetUser}}>
+    <Router>
+      <AppNavBar/>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/logout" element={<Logout/>} />
+        <Route path="/*" element={<PageNotFound/>}/>
+        <Route path="/product" element={<Product/>} />
+
+      </Routes>
+   
+     
+      
+     
+    </Router>
+    </UserProvider>
   );
 }
 
