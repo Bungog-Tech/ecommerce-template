@@ -26,7 +26,7 @@ console.log(user)
       return (
         <>
           {user.isAdmin === true ? (
-            <ProductAdminView productData={allProducts} />
+            <ProductAdminView productData={allProducts} fetchData={fetchData} />
           ) : (
             <ProductUserView productData={allProducts} />
           )}

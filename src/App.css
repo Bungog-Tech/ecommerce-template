@@ -33,3 +33,14 @@ body{
    top:-1rem;
    
 }
+.over-buttons{
+   min-width: 100px;  
+   display: flex;
+   justify-content: space-between;
+   padding: 0.5rem;
+   align-items: center;
+}
+.over-buttons  *{
+   margin:0;
+   padding: 0;
+}

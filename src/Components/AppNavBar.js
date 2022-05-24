@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UserContext from "../UserContext";
 
 export default function AppNavBar() {
   const { user } = useContext(UserContext);
-  console.log(user)
+ const [isCartEmpty] = useState((localStorage.getItem('isCartEmpty')))
   return (
     <>
       <Navbar bg="dark" expand="lg" variant="dark">
@@ -14,7 +14,8 @@ export default function AppNavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {user.accessToken !== null && user.isAdmin !== true ? 
-              (user.isCartEmpty === true) ? 
+              
+              (isCartEmpty === true) ? 
                 <Nav.Link as={Link} to="/">
                   <i className="fa fa-shopping-cart" />
                 </Nav.Link>

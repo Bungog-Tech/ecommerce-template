@@ -13,7 +13,7 @@ export default function Login() {
 
   const [isActive, setIsActive] = useState(true);
 
-  const [isCartEmptyVal, setIsCartEmpty] = useState(true);
+  const [isCartEmpty, setIsCartEmpty] = useState(true);
 
   useEffect(() => {
     //Validation to enable submit button
@@ -26,7 +26,6 @@ export default function Login() {
 
   
   function authenticate(e) {
-    
     e.preventDefault();
    
 
@@ -57,7 +56,9 @@ export default function Login() {
             headers: {
               Authorization: `Bearer ${data.accessToken}`,
             },
-          }).then((res) => res.json()).then((result) => {
+          })
+            .then((res) => res.json())
+            .then((result) => {
               console.log(result);
               if (result.isAdmin === true) {
                 setUser({
@@ -71,16 +72,16 @@ export default function Login() {
                 navigate("/product");
               } else {
                 console.log(result.cart.length)
-                if(result.cart.length !== 0){
-                  setIsCartEmpty(false);
+                if(result.cart.length === 0){
+                  setIsCartEmpty(true); 
                 }else{
-                  setIsCartEmpty(true);
+                  setIsCartEmpty(false);
                 }
-                
+                localStorage.setItem("isCartEmpty",isCartEmpty)
                 setUser({
-                  isAdmin:result.isAdmin,
-                  isCartEmpty:isCartEmptyVal})
-                  localStorage.setItem("isCartEmpty",isCartEmptyVal)
+                  isAdmin:result.isAdmin})
+
+                  
                 //if not an admin, redirect to homepage
                 navigate("/");
               }

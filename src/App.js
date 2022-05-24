@@ -23,7 +23,7 @@ function App() {
 const [user, setUser] = useState({
   accessToken : localStorage.getItem('accessToken'),
   email : localStorage.getItem("email"),
-  isCartEmpty : localStorage.getItem("isCartEmpty") === 'true',
+  
   isAdmin: localStorage.getItem("isAdmin")=== 'true'
 });
 
