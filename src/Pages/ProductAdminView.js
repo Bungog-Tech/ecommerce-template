@@ -19,7 +19,7 @@ export default function ProductAdminView(props) {
           <td className={product.isActive ? "text-success" : "text-danger"}>
             {product.isActive ? "Available" : "Unavailable"}
           </td>
-          <td><PopOverButton/></td>
+          <td><PopOverButton productData = {product._id} fetchData={fetchData} isActive={product.isActive}/></td>
         </tr>
       );
     });
@@ -34,7 +34,7 @@ export default function ProductAdminView(props) {
       </div>
 
       <Table id="ProductDataTable">
-        <thead striped bordered hover responsive>
+        <thead striped="true" bordered="true" hover="True" responsive ="true">
           <tr>
             <th>ID</th>
             <th>Name</th>

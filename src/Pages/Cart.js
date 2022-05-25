@@ -1,13 +1,15 @@
 import React, { useState,useEffect, useContext } from "react";
-import { Table,Button, Container } from "react-bootstrap";
-import NumericInput from "react-numeric-input";
+import { Table, Container, Button } from "react-bootstrap";
+
 import UserContext from "../UserContext";
+import CartTableRowComp from "../Components/CartTableRowComp";
 
 export default function Cart() {
   const  {user} = useContext(UserContext)
   const [allProductsInCart, setAllProductsInCart] = useState([]);
   const [productInCart, setProductInCart] = useState([]);
-  const [quantityVal, setQuantityVal] =useState(1);
+  const [isEmpty ,setIsEmpty] = useState(true)
+  
 
   const fetchData = () => {
     fetch("https://lit-wave-63074.herokuapp.com/products/cart", {
@@ -20,37 +22,27 @@ export default function Cart() {
         setAllProductsInCart(data);
       });
   };
-
+  
+  let productArr ;
   useEffect(() => {
-    
-    const productArr = allProductsInCart.map((product) => {
-      
-        return (
-          <tr key={product._id}>
-            <td>{product.name}</td>
-            <td>{product.price}</td>
-            <td>
-              <NumericInput
-                className="form-control"
-                value={quantityVal}
-                min={0}
-                max={1000}
-                step={1}
-                precision={0}
-                size={5}
-                mobile
-                onChange={(value) => setQuantityVal(value)}
-              />
-            </td>
-            <td>{product.price * quantityVal}</td>
+      if(allProductsInCart !== null && allProductsInCart !== [] && allProductsInCart !== false){
 
-            <td>
-             <Button variant="danger">remove</Button>
-            </td>
-          </tr>
+             productArr = allProductsInCart.map((product) => {
+              setIsEmpty(false)
+        return (
+          <CartTableRowComp key={product._id} product={product} fetchData={fetchData}/>
         );
-     
+          
     });
+      }else{
+         productArr =<>
+          <h1>You have no Items in your cart</h1>
+          
+         </>
+         setIsEmpty(true);
+      }
+    
+  
     setProductInCart(productArr);
     fetchData();
   }, [allProductsInCart]);
@@ -68,6 +60,13 @@ export default function Cart() {
           </tr>
         </thead>
         <tbody>{productInCart}</tbody>
+        {(isEmpty)?
+        <tfoot></tfoot>
+       
+      :
+       <tfoot><Button variant="primary" className="mt-5">Checkout</Button></tfoot>
+      }
+        
       </Table>
     </Container>
   );

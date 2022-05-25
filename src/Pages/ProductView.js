@@ -44,16 +44,17 @@ export default function ProductView() {
 		})
 		.then(res => res.json())
 		.then(data => {
-			if(data) {
+			if(data === true) {
 				Swal.fire({
 					title: 'Successfully Added to Cart',
 					icon: 'success'
 				})
 
 				navigate('/product')
-			}else {
+			}
+            else {
 				Swal.fire({
-					title:'Something went wrong',
+					title:`${data.message}`,
 					icon: 'error'
 
 				})

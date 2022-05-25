@@ -1,19 +1,24 @@
 import React from "react";
 import { Button,Popover,OverlayTrigger,ButtonToolbar } from "react-bootstrap";
+import UnarchiveProduct from "./UnarchiveProduct";
+import EditProduct from "./EditProduct";
+import DeleteProduct from "./DeleteProduct";
 
-export default function PopOverButton(){
+
+export default function PopOverButton(props){
+  const {productData , fetchData,isActive} = props;
     const popoverLeft = (
         <Popover id="popover-positioned-left" title="Popover left">
-          <Button variant="outline-primary" className="over-buttons"><i class="far fa-edit"></i> Edit</Button><br/>
-          <Button variant="outline-warning" className="over-buttons"><i class="fas fa-archive"></i> Archive</Button><br/>
-          <Button variant="outline-danger" className="over-buttons"><i class="	far fa-trash-alt"></i> Delete</Button>
+          <EditProduct fetchData={fetchData} product={productData} />
+          <UnarchiveProduct fetchData={fetchData} productId={productData} isActive={isActive}/>
+          <DeleteProduct fetchData={fetchData} product={productData}/>
         </Popover>
       );
   return( 
  <>
   <ButtonToolbar>
-    <OverlayTrigger trigger="click" rootClose placement="left" overlay={popoverLeft}>
-      <Button><i class="fa fa-bars"></i></Button>
+    <OverlayTrigger trigger="click"  rootCloseEvent="mousedown" placement="left" overlay={popoverLeft}>
+      <Button><i className="fa fa-bars"></i></Button>
     </OverlayTrigger>
    </ButtonToolbar>
  </>

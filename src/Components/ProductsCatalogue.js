@@ -1,6 +1,6 @@
 import React, { useState,useEffect} from "react";
 import CatalougueCard from "./CatalogueCard";
-import { Container, Row } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 
 
 export default function ProductCatalogue(){

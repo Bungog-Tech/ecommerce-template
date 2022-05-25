@@ -45,6 +45,5 @@ body{
    padding: 0;
 }
 .card-min-height{
-   min-height: 14rem;
-   max-height: 14rem;
+   row-gap: 1rem;
 }
