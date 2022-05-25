@@ -9,18 +9,19 @@ export default function AppNavBar() {
   return (
     <>
       <Navbar bg="dark" expand="lg" variant="dark">
-        <Navbar.Brand className="ms-5">Zenon's shop</Navbar.Brand>
+        <Navbar.Brand className="ms-5" >Zenon's shop</Navbar.Brand>
         <Navbar.Toggle href aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+         
           <Nav className="ms-auto">
             {user.accessToken !== null && user.isAdmin !== true ? 
               
               (isCartEmpty === true) ? 
-                <Nav.Link as={Link} to="/">
+                <Nav.Link as={Link} to="/myCart">
                   <i className="fa fa-shopping-cart" />
                 </Nav.Link>
                : 
-                <Nav.Link as={Link} to="/">
+                <Nav.Link as={Link} to="/myCart">
                   <i className="fa fa-shopping-cart  cart-value" />
                 </Nav.Link>
               
@@ -29,12 +30,14 @@ export default function AppNavBar() {
                 
               </Nav.Link>
             }
+            <Nav.Link as={Link} to="/">
+              HOME
+            </Nav.Link>
              <Nav.Link as={Link} to="/product">
               PRODUCTS
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
-              TRACK MY ORDER
-            </Nav.Link>
+            
+            
             {user.accessToken !== null ? (
               <Nav.Link as={Link} to="/logout">
                 LOGOUT

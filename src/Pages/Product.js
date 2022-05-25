@@ -8,7 +8,7 @@ export default function Product(){
 const {user} = useContext(UserContext);
 const [allProducts, setAllProducts] = useState([]);
 
-console.log(user)
+
     const fetchData = () => {
         fetch("https://lit-wave-63074.herokuapp.com/products/")
           .then((result) => result.json())

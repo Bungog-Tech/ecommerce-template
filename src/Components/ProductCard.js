@@ -22,7 +22,7 @@ export default function ProductCard({productData}){
           
          
             <Button variant="primary" >
-              Enroll
+              Add to Cart
             </Button>
          
         </Card.Body>

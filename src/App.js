@@ -6,7 +6,8 @@ import Home from "./Pages/Home";
 import Logout from "./Pages/Logout";
 import PageNotFound from "./Pages/PageError";
 import Product from "./Pages/Product";
-
+import ProductView from "./Pages/ProductView";
+import Cart from "./Pages/Cart";
 
 
 import { UserProvider } from "./UserContext";
@@ -42,7 +43,9 @@ const unsetUser = () =>{
         <Route path="/logout" element={<Logout/>} />
         <Route path="/*" element={<PageNotFound/>}/>
         <Route path="/product" element={<Product/>} />
-
+        <Route path="/product/:productId" element={<ProductView/>} />
+        <Route path="/myCart" element={<Cart/>}/>
+        
       </Routes>
    
      
