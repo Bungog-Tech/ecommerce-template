@@ -30,12 +30,18 @@ export default function AppNavBar() {
                 
               </Nav.Link>
             }
-            <Nav.Link as={Link} to="/">
-              HOME
-            </Nav.Link>
-             <Nav.Link as={Link} to="/product">
-              PRODUCTS
-            </Nav.Link>
+            {user.isAdmin !==true ?
+            <>
+              <Nav.Link as={Link} to="/">
+                HOME
+              </Nav.Link>
+               <Nav.Link as={Link} to="/product">
+                PRODUCTS
+              </Nav.Link>
+            </>
+            :
+            <></>
+            }
             
             
             {user.accessToken !== null ? (

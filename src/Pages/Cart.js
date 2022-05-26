@@ -9,7 +9,21 @@ export default function Cart() {
   const [allProductsInCart, setAllProductsInCart] = useState([]);
   const [productInCart, setProductInCart] = useState([]);
   const [isEmpty ,setIsEmpty] = useState(true)
+  const [totalAmount] = useState(1)
+ 
+
+  // const getDataFromDataTable = ()=>{
+    // let table = document.getElementById('CartDataTable');
+    // for (let r = 1, n = table.rows.length; r < n; r++) {
+    //   console.log(table.rows[r].cells[3].innerHtml)
+    //   // amount = totalAmount +   
+    //     // for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
+    //     //     console.log( `ROW : ${r} COL: ${c}  DATA:${table.rows[r].cells[c].innerHTML}`);
+    //     // }
+    //     // setTotalAmount(amount)
+    // }
   
+  // }
 
   const fetchData = () => {
     fetch("https://lit-wave-63074.herokuapp.com/products/cart", {
@@ -42,15 +56,16 @@ export default function Cart() {
          setIsEmpty(true);
       }
     
-  
+    
     setProductInCart(productArr);
     fetchData();
+    // getDataFromDataTable();
   }, [allProductsInCart]);
   return (
     <Container>
       <h1>Your Shopping Cart</h1>
-      <Table id="ProductDataTable">
-        <thead striped bordered hover responsive>
+      <Table id="CartDataTable">
+        <thead striped ="true" bordered="true" hover="true" responsive="true">
           <tr>
             <th>Name</th>
             <th>Price</th>
@@ -64,7 +79,7 @@ export default function Cart() {
         <tfoot></tfoot>
        
       :
-       <tfoot><Button variant="primary" className="mt-5">Checkout</Button></tfoot>
+       <tfoot className="tfooter"><tr><td colSpan={3}><Button variant="primary" className="my-2">Checkout</Button></td><td colSpan={2}><b>Total Amount : {totalAmount}</b></td></tr></tfoot> 
       }
         
       </Table>

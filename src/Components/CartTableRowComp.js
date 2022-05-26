@@ -4,8 +4,8 @@ import {Button} from "react-bootstrap"
 import Swal from "sweetalert2";
 
 export default function CartTableRowComp({product ,fetchData}) {
-    const [quantityVal, setQuantityVal] =useState(1);
-
+    const [quantityVal, setQuantityVal] = useState(1);
+    
     const pullToggle = (productId) => {
 		fetch(`https://lit-wave-63074.herokuapp.com/products/pullCart/${productId}`, {
 			method: 'PUT',
