@@ -1,6 +1,6 @@
 import React, { useState,useEffect, useContext } from "react";
 import { Table, Container, Button } from "react-bootstrap";
-
+import swal from "sweetalert2";
 import UserContext from "../UserContext";
 import CartTableRowComp from "../Components/CartTableRowComp";
 
@@ -10,7 +10,38 @@ export default function Cart() {
   const [productInCart, setProductInCart] = useState([]);
   const [isEmpty ,setIsEmpty] = useState(true)
   const [totalAmount,setTotalAmount] = useState(1)
+  
   let amount =0;
+
+  const toggleOrderCreate =()=>{
+    fetch("http://localhost:4000/orders/createOrder", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${user.accessToken}` },
+      body: JSON.stringify({
+        totalAmount: totalAmount,
+      
+      }),
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        console.log(data);
+        if (data === true) {
+          swal.fire({
+            title: "well Done ",
+            icon: "success",
+            text: "You have sucessfully Created an Order",
+          });
+         
+        } else {
+          swal.fire({
+            title: "failed ",
+            icon: "error",
+            text: `${data.message}`,
+          });
+        }
+      });
+  
+  }
 
   const getDataFromDataTable = ()=>{
     let table = document.getElementById('CartDataTable');
@@ -87,7 +118,7 @@ export default function Cart() {
         <tfoot></tfoot>
        
       :
-       <tfoot className="tfooter"><tr><td colSpan={3}><Button variant="primary" className="my-2">Checkout</Button></td><td colSpan={2}><b>Total Amount : {totalAmount}</b></td></tr></tfoot> 
+       <tfoot className="tfooter"><tr><td colSpan={3}><Button variant="primary" className="my-2" onClick={()=>{toggleOrderCreate()}}>Checkout</Button></td><td colSpan={2}><b>Total Amount : {totalAmount}</b></td></tr></tfoot> 
       }
         
       </Table>

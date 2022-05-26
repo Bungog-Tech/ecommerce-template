@@ -3,6 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UserContext from "../UserContext";
 
+
 export default function AppNavBar() {
   const { user } = useContext(UserContext);
  const [isCartEmpty] = useState((localStorage.getItem('isCartEmpty')))
@@ -17,14 +18,20 @@ export default function AppNavBar() {
             {user.accessToken !== null && user.isAdmin !== true ? 
               
               (isCartEmpty === true) ? 
-                <Nav.Link as={Link} to="/myCart">
-                  <i className="fa fa-shopping-cart" />
-                </Nav.Link>
+               <p>
+                  <Nav.Link as={Link} to="/myCart">
+                    <i className="fa fa-shopping-cart" />
+                  </Nav.Link>
+                   
+               </p>
                : 
-                <Nav.Link as={Link} to="/myCart">
-                  <i className="fa fa-shopping-cart  cart-value" />
-                </Nav.Link>
-              
+                <>
+                  <Nav.Link as={Link} to="/myCart">
+                    <i className="fa fa-shopping-cart  cart-value" />
+                  </Nav.Link>
+                  
+                
+                </>
              : 
                 <Nav.Link as={Link} to="/" className="hidden">
                 
@@ -38,6 +45,7 @@ export default function AppNavBar() {
                <Nav.Link as={Link} to="/product">
                 PRODUCTS
               </Nav.Link>
+             
             </>
             :
             <></>
