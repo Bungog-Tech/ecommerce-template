@@ -9,21 +9,29 @@ export default function Cart() {
   const [allProductsInCart, setAllProductsInCart] = useState([]);
   const [productInCart, setProductInCart] = useState([]);
   const [isEmpty ,setIsEmpty] = useState(true)
-  const [totalAmount] = useState(1)
- 
+  const [totalAmount,setTotalAmount] = useState(1)
+  let amount =0;
 
-  // const getDataFromDataTable = ()=>{
-    // let table = document.getElementById('CartDataTable');
-    // for (let r = 1, n = table.rows.length; r < n; r++) {
-    //   console.log(table.rows[r].cells[3].innerHtml)
-    //   // amount = totalAmount +   
-    //     // for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
-    //     //     console.log( `ROW : ${r} COL: ${c}  DATA:${table.rows[r].cells[c].innerHTML}`);
-    //     // }
-    //     // setTotalAmount(amount)
-    // }
+  const getDataFromDataTable = ()=>{
+    let table = document.getElementById('CartDataTable');
+    for (let r = 1, n = table.rows.length-1; r < n; r++) {
+      try{
+        amount += Number(table.rows[r].cells[3].innerHTML)
+     
+      setTotalAmount(amount);
+    }
+
+      catch(e){
+        console.log(e.message)
+      }
+      // amount = totalAmount +   
+        // for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
+        //     console.log( `ROW : ${r} COL: ${c}  DATA:${table.rows[r].cells[c].innerHTML}`);
+        // }
+        // setTotalAmount(amount)
+    }
   
-  // }
+  }
 
   const fetchData = () => {
     fetch("https://lit-wave-63074.herokuapp.com/products/cart", {
@@ -59,7 +67,7 @@ export default function Cart() {
     
     setProductInCart(productArr);
     fetchData();
-    // getDataFromDataTable();
+    getDataFromDataTable();
   }, [allProductsInCart]);
   return (
     <Container>

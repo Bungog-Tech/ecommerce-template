@@ -46,7 +46,7 @@ export default function CartTableRowComp({product ,fetchData}) {
               <NumericInput
                 className="form-control"
                 value={quantityVal}
-                min={0}
+                min={1}
                 max={1000}
                 step={1}
                 precision={0}
