@@ -7,7 +7,7 @@ export default function Order() {
   
   const {user} =useContext(UserContext);
 
-  const  fetchData = () => {fetch("http://localhost:4000/orders/currentOrder", {
+  const  fetchData = () => {fetch("https://lit-wave-63074.herokuapp.com/orders/currentOrder", {
     headers: {
       Authorization: `Bearer ${user.accessToken}`,
     },

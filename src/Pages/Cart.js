@@ -14,7 +14,7 @@ export default function Cart() {
   let amount =0;
 
   const toggleOrderCreate =()=>{
-    fetch("http://localhost:4000/orders/createOrder", {
+    fetch("https://lit-wave-63074.herokuapp.com/orders/createOrder", {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${user.accessToken}` },
       body: JSON.stringify({
