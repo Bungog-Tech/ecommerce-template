@@ -65,7 +65,7 @@ export default function ProductCard({productData}){
                               </Button>
                           </div>
                           :
-                          <Link className="btn btn-warning d-grid gap-2 col-2" to="/login">
+                          <Link className="btn btn-warning d-grid gap-2" to="/login">
                               Login to add to Cart
                           </Link>
                       }
