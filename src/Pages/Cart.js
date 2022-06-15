@@ -95,7 +95,7 @@ export default function Cart() {
     
     setProductInCart(productArr);
     fetchData();
-    getDataFromDataTable();
+    getDataFromDataTable(); 
   }, [allProductsInCart]);
   return (
     <Container>
