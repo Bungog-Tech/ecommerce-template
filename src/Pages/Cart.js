@@ -55,11 +55,7 @@ export default function Cart() {
       catch(e){
         console.log(e.message)
       }
-      // amount = totalAmount +   
-        // for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
-        //     console.log( `ROW : ${r} COL: ${c}  DATA:${table.rows[r].cells[c].innerHTML}`);
-        // }
-        // setTotalAmount(amount)
+      
     }
   
   }

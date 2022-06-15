@@ -11,6 +11,11 @@ export default function Register() {
   const [password2, setPassword2] = useState("");
   const [isActive, setIsActive] = useState(false);
   const { user } = useContext(UserContext);
+ 
+
+  // let count =0;
+
+  // setCount(count +1)
 
   useEffect(() => {
     if (
@@ -76,7 +81,7 @@ export default function Register() {
                 type="email"
                 placeholder="Enter Email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else
