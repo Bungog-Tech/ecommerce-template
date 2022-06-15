@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function CatalougueCard({ productData }) {
   const {_id, name, price, description } = productData;
   return (
-    <Col lg={3} md={6} sm={6}>
+    <Col lg={3} md={6} sm={12} className="mt-3">
         <Card className="m-2 card-min-height h-100"  >
         <Card.Header><b>{name}</b></Card.Header>
           <Card.Body>

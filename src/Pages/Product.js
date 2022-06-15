@@ -2,6 +2,7 @@ import React, { useState,useContext,useEffect } from "react";
 import UserContext from "../UserContext";
 import ProductUserView from "./ProductUserView";
 import ProductAdminView from "./ProductAdminView";
+import { Container, Row } from "react-bootstrap";
 
 export default function Product(){
 
@@ -25,11 +26,13 @@ const [allProducts, setAllProducts] = useState([]);
 
       return (
         <>
-          {user.isAdmin === true ? (
-            <ProductAdminView productData={allProducts} fetchData={fetchData} />
-          ) : (
-            <ProductUserView productData={allProducts} />
-          )}
+          <Container>
+            {user.isAdmin === true ? (
+              <ProductAdminView productData={allProducts} fetchData={fetchData} />
+            ) : (
+              <Row><ProductUserView productData={allProducts} /></Row>
+            )}
+          </Container>
         </>
       );
 }

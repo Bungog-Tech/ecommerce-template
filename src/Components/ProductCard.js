@@ -48,30 +48,30 @@ export default function ProductCard({productData}){
     return(
         <>
         <Card className="mt-2">
-        <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Body className="text-center">
+            <Card.Title>{name}</Card.Title>
 
-          <Card.Subtitle>Description:</Card.Subtitle>
-          <Card.Text>{description}</Card.Text>
-          <Card.Subtitle>Price:</Card.Subtitle>
-          <Card.Text>Php {price} </Card.Text>
+            <Card.Subtitle>Description:</Card.Subtitle>
+            <Card.Text>{description}</Card.Text>
+            <Card.Subtitle>Price:</Card.Subtitle>
+            <Card.Text>Php {price} </Card.Text>
+            
           
-         
-          {
-                        user.accessToken !== null ?
-                        <div className="d-grid gap-2">
-                            <Button variant="primary" className="col-2" onClick={() => addtoCart(_id)}>
-                                Add to Cart
-                            </Button>
-                        </div>
-                        :
-                        <Link className="btn btn-warning d-grid gap-2 col-2" to="/login">
-                            Login to add to Cart
-                        </Link>
-                    }
-         
-        </Card.Body>
-      </Card>
+            {
+                          user.accessToken !== null ?
+                          <div >
+                              <Button variant="primary" onClick={() => addtoCart(_id)}>
+                                  Add to Cart
+                              </Button>
+                          </div>
+                          :
+                          <Link className="btn btn-warning d-grid gap-2 col-2" to="/login">
+                              Login to add to Cart
+                          </Link>
+                      }
+          
+          </Card.Body>
+        </Card>
         </>
     )
 }
