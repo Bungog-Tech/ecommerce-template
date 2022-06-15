@@ -74,7 +74,8 @@ export default function Cart() {
   
   let productArr ;
   useEffect(() => {
-      if(allProductsInCart !== null && allProductsInCart !== [] && allProductsInCart !== false){
+    // console.log(allProductsInCart)
+      if(allProductsInCart.length !== 0 && allProductsInCart !== false){
 
              productArr = allProductsInCart.map((product) => {
               setIsEmpty(false)
